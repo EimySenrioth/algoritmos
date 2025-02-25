@@ -6,7 +6,7 @@ def prime_tester(n):
     t = 2  # Comenzamos desde 2, pues con 1 no se puede
     while not (n % t == 0 or t == n - 1):  # Hasta que encontramos un divisor o t == n - 1
         # Agregar el valor de t, "F" o "T" para t|n y "T"/"F" para t = n - 1
-        a.append([t, "F" if n % t != 0 else "T", "T" if t == n - 1 else "F", "---"])  # Agregar "output"
+        a.append([t, "F" if n % t != 0 else "T", "T" if t == n - 1 else "F", "---"])  # Aqui se almacenan los valores para que se le de formato en el df
         t += 1  
     
     if n % t == 0:
