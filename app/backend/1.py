@@ -1,1 +1,0 @@
-#Tarea implementar factorizacion prima y maximo comun divisor
