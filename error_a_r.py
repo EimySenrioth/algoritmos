@@ -43,7 +43,6 @@ aproximacion2(a)
 #como el valor que es el orginal y el truncadto str que es el valor truncado
 #los prints son para ver el error absoluto y el error relativo
 
-from decimal import Decimal, getcontext
 #Decimal es una clase que permite trabajar con números decimales con una precisión arbitraria
 # getcontext() devuelve el contexto actual de la clase Decimal
 getcontext().prec = 10  

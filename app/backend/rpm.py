@@ -37,7 +37,9 @@ df = pd.DataFrame(c, columns=['a_1', 'b_2'])
 
 def b_evaluation(df):
     """Suma solo los valores de b_2 donde a_1 es impar."""
-    return df[df['a_1'] % 2 == 1]['b_2'].sum()
+    return df[df['a_1'] % 2 == 1]['b_2'].sum()#se abre el df geneal y se abro otro df
+#especificando el df y la columna que son pares con el porcentaje y lo comparon con == a los con no son pares
+#1 de la otra columna y los suma
 
 def ab_multipliaction_result(a, b):
     """Multiplicación tradicional de los dos números."""

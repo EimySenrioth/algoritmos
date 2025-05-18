@@ -29,7 +29,7 @@ def sustraendo(numero):
     """Separa decenas y unidades del sustraendo."""
     decena, unidad = divmod(abs(numero), 10)
     d.append([decena, unidad])  
-# lo mismo del paso anterior pero el target es el segundo valor del user
+# lo mismo del paso anterior pero el target es el segundo valor del user, solo sepra
 
 borrow_method()
 minuendo(a[0])  

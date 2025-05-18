@@ -1,4 +1,4 @@
-def convertir_base(numero, base):
+def convertir_base(numero, base):#convertir de nuemro a base
     digitos = "0123456789ABCDEF"  # Para manejar números hexadecimales
     resultado = ""
     #se toma el numero que se quiere convertir y la base a la que se quiere convertir

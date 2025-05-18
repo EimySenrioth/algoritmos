@@ -5,7 +5,7 @@ h = []
 def mcd(x, y):
     A = x
     B = y
-    R = A % B
+    R = A % B#se calcula el residuo
     while R > 0:
         # Guardamos los valores en cada paso del algoritmo
         h.append([A, B, R, "T" if R > 0 else "F", "T" if R == 0 else "F"])

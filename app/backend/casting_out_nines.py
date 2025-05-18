@@ -9,11 +9,11 @@ def n_cast_9():
             print("Por favor, ingrese un número válido.")
 
 def cast_9(numero):
-    digitos = []
+    digitos = [] #separar todos los numeros
     while numero > 0:
         numero, resul = divmod(numero, 10)  
         digitos.append(resul)  
-    return digitos[::-1]  
+    return digitos[::-1]#  como los extraje del mas sifnificante al menor los volteo
 
 def sum_cast(digitos):
     suma = sum(digitos)
