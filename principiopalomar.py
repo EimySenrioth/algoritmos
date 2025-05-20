@@ -10,7 +10,7 @@ estados_animo = h
 
 distribucion_base = personalidades // estados_animo
 
-def ami_palomar(p, h):
+def ami_palomar(p=27, h=5):
     return p//h + (1 if p % h != 0 else 0)#Si el resto no es 0 (es decir, hay un sobrante), entonces se agrega 1 o 0 si no hay sobrante
 # tenemos que nos da 5 y sobran 2, que da 6
 

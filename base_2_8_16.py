@@ -9,9 +9,9 @@ def convertir_base(numero, base):
     resultado = ""
     signo = ""
 
-    if numero < 0:
+    if numero < 0:#Verifica si el número decimal que se quiere convertir es negativo. Si lo es, hay que conservar el signo negativo para devolverlo al final.
         signo = "-"
-        numero = abs(numero)
+        numero = abs(numero)# valor absoluto (positivo) porque la conversión por divisiones sucesivas solo se aplica a números positivos.
 
     while numero > 0:
         resto = numero % base

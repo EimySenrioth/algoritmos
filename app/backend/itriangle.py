@@ -33,7 +33,7 @@ def crear_triangulo_pascal(n):
 
 def preparar_datos_triangulo(n):
  
-    triangulo = crear_triangulo_pascal(n)
+    triangulo = crear_triangulo_pascal(n=11)
 #paso a una nueva varieble
 #creo listas vacias, para filas del triangulo, columnas, valores del triangulo
 #orientaciones
