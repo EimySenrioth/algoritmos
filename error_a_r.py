@@ -1,43 +1,69 @@
 from decimal import Decimal, getcontext
 
-def configurar_contexto(precision):
-    getcontext().prec = precision
+# Parte 0: Multiplicación con Decimal
+print("=== Parte 0: Multiplicación con Decimal ===")
+getcontext().prec = 5
+num1 = Decimal("3.14159")
+num2 = Decimal("2.71828")
+resultado = num1 * num2
+print(f"Resultado de la multiplicación: {resultado}\n")
 
-def mostrar_multiplicacion():
-    num1 = Decimal("3.14159")
-    num2 = Decimal("2.71828")
-    resultado = num1 * num2
-    print(f"Multiplicación con precisión {getcontext().prec}: {resultado}\n")
+# Parte 1: Aproximación usando float
+print("=== Parte 1: Aproximaciones con float ===")
+a = 625 / 26
+print(f"Valor de A: {a}")
 
-def aproximacion_float(a, decimales):
-    a_redondeado = round(a, decimales)
-    error_abs = abs(a - a_redondeado)
-    error_rel = (error_abs / a) * 100
-    print(f"Aproximación {decimales} decimales: {a_redondeado}")
-    print(f"Error absoluto: {error_abs}")
-    print(f"Error relativo: {error_rel:.6f}%\n")
+b = []
+c = []
 
-def aproximacion_decimal(valor_real, truncado_str):
-    truncado = Decimal(truncado_str)
-    error_abs = abs(valor_real - truncado)
-    error_rel = (error_abs / valor_real) * 100
-    print(f"Aproximación: {truncado} (truncado)")
-    print(f"Error absoluto: {error_abs}")
-    print(f"Error relativo: {error_rel:.6f}%\n")
+def aproximacion(a):
+    a_truncado = round(a, 2)
+    er = abs(a - a_truncado)
+    b.append(er)
+    err = (er / a) * 100
+    c.append(err)
+    print(f"Aproximación 1 (2 decimales): {a_truncado}")
+    print(f"Error absoluto: {er}")
+    print(f"Error relativo: {err:.6f}%\n")
 
-if __name__ == "__main__":
-    configurar_contexto(5)
-    mostrar_multiplicacion()
+def aproximacion2(a):
+    a_truncado = round(a, 4)
+    er = abs(a - a_truncado)
+    b.append(er)
+    err = (er / a) * 100
+    c.append(err)
+    print(f"Aproximación 2 (4 decimales): {a_truncado}")
+    print(f"Error absoluto: {er}")
+    print(f"Error relativo: {err:.6f}%\n")
 
-    a = 625 / 26
-    print(f"Valor de A: {a}\n")
+aproximacion(a)
+aproximacion2(a)
 
-    aproximacion_float(a, 2)
-    aproximacion_float(a, 4)
+# Parte 2: Aproximaciones con entrada del usuario y Decimal
+print("=== Parte 2: Aproximaciones usando Decimal ===")
+getcontext().prec = 10
 
-    configurar_contexto(10)
-    valor_real = Decimal(625) / Decimal(26)
-    print(f"Valor de C (Decimal): {valor_real}\n")
+try:
+    valor_real_str = input("🔢 Ingresa el valor real (ej. 24.03846154): ").strip()
+    truncado_str1 = input("✂️ Ingresa el primer valor truncado (ej. 24.03): ").strip()
+    truncado_str2 = input("✂️ Ingresa el segundo valor truncado (ej. 24.0384): ").strip()
 
-    aproximacion_decimal(valor_real, "24.03")
-    aproximacion_decimal(valor_real, "24.0384")
+    valor_real = Decimal(valor_real_str)
+    print(f"\nValor de C (preciso): {valor_real}")
+
+    def aproximacion_decimal(valor, truncado_str):
+        truncado = Decimal(truncado_str)
+        error_abs = abs(valor - truncado)
+        error_rel = (error_abs / valor) * 100 if valor != 0 else 0
+        print(f"\nAproximación: {truncado} (truncado)")
+        print(f"Error absoluto: {error_abs}")
+        print(f"Error relativo: {error_rel:.6f}%")
+        if error_rel > 50:
+            print("⚠️ El error relativo es muy grande. Verifica el valor ingresado.")
+
+    aproximacion_decimal(valor_real, truncado_str1)
+    aproximacion_decimal(valor_real, truncado_str2)
+
+except Exception as e:
+    print(f"❌ Error: {e}")
+
