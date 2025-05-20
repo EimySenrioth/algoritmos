@@ -3,62 +3,83 @@
 
 import pandas as pd
 
-a = []
-b = []
-c = []
+def rpm_algorithm():
+    """Russian Peasant Multiplication Algorithm - Algoritmo RPS"""
+    
+    # Listas para almacenar los valores
+    a = []
+    b = []
+    c = []
 
-def number_rps():
-    while True:
-        try:
-            numero_A = int(input("Ingrese un número: "))
-            numero_B = int(input("Ingrese otro número: "))
+    def number_rps():
+        while True:
+            try:
+                numero_A = int(input("Ingrese el primer número: "))
+                numero_B = int(input("Ingrese el segundo número: "))
 
-            if numero_A <= 0 or numero_B <= 0:
-                print("El número debe ser mayor a 0.")
-                continue
+                if numero_A <= 0 or numero_B <= 0:
+                    print("El número debe ser mayor a 0.")
+                    continue
 
-            a.append(numero_A)
-            b.append(numero_B)
-            break
-        except ValueError:
-            print("Por favor, ingrese un número válido.")
+                a.append(numero_A)
+                b.append(numero_B)
+                break
+            except ValueError:
+                print("Por favor, ingrese un número válido.")
 
-def rpm_calculo(a, b):
-    while a > 0:
-        c.append([a, b])  
-        a //= 2  
-        b *= 2   
+    def rpm_calculo(a_val, b_val):
+        while a_val > 0:
+            c.append([a_val, b_val])  
+            a_val //= 2  
+            b_val *= 2   
 
-number_rps()
-rpm_calculo(a[0], b[0]) 
+    def b_evaluation(df):
+        """Suma solo los valores de b_2 donde a_1 es impar."""
+        return df[df['a_1'] % 2 == 1]['b_2'].sum()
 
+    def ab_multiplication_result(a_val, b_val):
+        """Multiplicación tradicional de los dos números."""
+        return a_val * b_val
 
-df = pd.DataFrame(c, columns=['a_1', 'b_2'])
+    # Ejecutar el algoritmo
+    print("\n=== Russian Peasant Multiplication (RPS) ===")
+    number_rps()
+    rpm_calculo(a[0], b[0])
 
-def b_evaluation(df):
-    """Suma solo los valores de b_2 donde a_1 es impar."""
-    return df[df['a_1'] % 2 == 1]['b_2'].sum()#se abre el df geneal y se abro otro df
-#especificando el df y la columna que son pares con el porcentaje y lo comparon con == a los con no son pares
-#1 de la otra columna y los suma
+    # Crear DataFrame
+    df = pd.DataFrame(c, columns=['a_1', 'b_2'])
 
-def ab_multipliaction_result(a, b):
-    """Multiplicación tradicional de los dos números."""
-    return a * b
-
-def rpm():
-    resultado_multiplicacion = ab_multipliaction_result(a[0], b[0])  
+    # Calcular resultados
+    resultado_multiplicacion = ab_multiplication_result(a[0], b[0])  
     suma_pares = b_evaluation(df)  
 
     print("\nProceso de RPS:")
     print(df)
+    print(f"\nNúmeros originales: {a[0]} × {b[0]}")
 
     if resultado_multiplicacion == suma_pares:
-        print(f"\n Hola, el resultado de tu multiplicación es {resultado_multiplicacion} y el RPS da {suma_pares}.")
+        print(f"\n✓ Resultado correcto!")
+        print(f"  Multiplicación tradicional: {resultado_multiplicacion}")
+        print(f"  RPS (suma de impares): {suma_pares}")
+        return resultado_multiplicacion
     else:
-        print("\n No se puede realizar la operación.")
+        print("\n✗ Error en el cálculo.")
+        return None
 
-rpm()
+# Mantener compatibilidad con tu código original
+def number_rps():
+    pass
 
+def rpm_calculo(a, b):
+    pass
+
+def rpm():
+    """Función principal que ejecuta el algoritmo RPS"""
+    return rpm_algorithm()
+
+# Permitir ejecución directa del archivo
+if __name__ == "__main__":
+    rpm_algorithm()
         
         
         

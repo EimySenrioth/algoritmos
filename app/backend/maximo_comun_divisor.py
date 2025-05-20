@@ -2,17 +2,18 @@ import pandas as pd
 
 h = []
 
-def mcd(x, y):
+def mcd(x=10035, y=3568):
+    h.clear()  # limpiar historial cada vez que se llama la función
     A = x
     B = y
-    R = A % B#se calcula el residuo
+    R = A % B
     while R > 0:
-        # Guardamos los valores en cada paso del algoritmo
         h.append([A, B, R, "T" if R > 0 else "F", "T" if R == 0 else "F"])
         A = B
         B = R
         R = A % B
     return B
+
 
 # Ejemplo de uso
 num1 = 10035
